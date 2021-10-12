@@ -10,12 +10,42 @@
 <body>
 
 <input type="text"
+       id="disabled-days"
        class="datepicker-here"
        data-language='en'
-       data-min-view="months"
-       data-view="months"
-       data-date-format="MM yyyy" />
+       />
 
+
+<script>
+    // Make Sunday and Saturday disabled
+    var disabledDates = ['2021.10.4', '2021.10.17', '2021.10.20', '2021.10.23']
+
+    $('#disabled-days').datepicker({
+        language: 'en',
+        onRenderCell: function(d, type) {
+            if (type == 'day') {
+                var disabled = false,
+                    formatted = getFormattedDate(d);
+
+                disabled = disabledDates.filter(function(date){
+                    return date == formatted;
+                }).length
+
+                return {
+                    disabled: disabled
+                }
+            }
+        }
+    })
+
+    function getFormattedDate(date) {
+        var year = date.getFullYear(),
+            month = date.getMonth() + 1,
+            date = date.getDate();
+
+        return year + '.' + month + '.' + date;
+    }
+</script>
 
 </body>
 
