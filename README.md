@@ -32,6 +32,81 @@
 
 ```
 
+<p>disable specific date </p>
+
+```html
+
+
+
+
+<html>
+<head>
+    <link href="dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="dist/js/datepicker.min.js"></script>
+    <!-- Include English language -->
+    <script src="dist/js/i18n/datepicker.en.js"></script>
+</head>
+<body>
+
+<input type="text"
+       id="disabled-days"
+       class="datepicker-here"
+       data-language='en'
+       />
+
+
+<script>
+    // Make Sunday and Saturday disabled
+    var disabledDates = ['2021.10.4', '2021.10.17', '2021.10.20', '2021.10.23']
+
+    $('#disabled-days').datepicker({
+        language: 'en',
+        onRenderCell: function(d, type) {
+            if (type == 'day') {
+                var disabled = false,
+                    formatted = getFormattedDate(d);
+
+                disabled = disabledDates.filter(function(date){
+                    return date == formatted;
+                }).length
+
+                return {
+                    disabled: disabled
+                }
+            }
+        }
+    })
+
+    function getFormattedDate(date) {
+        var year = date.getFullYear(),
+            month = date.getMonth() + 1,
+            date = date.getDate();
+
+        return year + '.' + month + '.' + date;
+    }
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
 
 
 
