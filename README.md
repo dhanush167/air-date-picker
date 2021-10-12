@@ -3,6 +3,7 @@
 # CDN
 
 
+
 ```html
 
 
@@ -93,21 +94,16 @@
 </html>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 
+###change formate
+
+```php
+
+    $checkIn = date('Y-m-d', strtotime($request->checkin));
+    $checkOut = date('Y-m-d', strtotime($request->checkout));
+
+```
 
 
 ## Install
